@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UB-Main Page</title>
+  <title>Projects</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #fff;
+      background-color: #f5f5f5;
       color: #333;
     }
 
@@ -19,13 +19,11 @@
       align-items: center;
       padding: 15px 40px;
       background-color: #23297a;
-      border-bottom: 1px solid #ddd;
+      color: #fff;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #d87d0f;
+    header .logo img {
+      width: 120px;
     }
 
     nav ul {
@@ -36,77 +34,77 @@
       padding: 0;
     }
 
-    nav ul li {
-      display: inline;
-    }
-
     nav ul li a {
       text-decoration: none;
       color: #1f51ff;
       font-weight: 500;
     }
 
-    .icons {
-      display: flex;
-      gap: 15px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
     /* Hero Section */
-    /* Hero Section */
+  /* Hero Section */
 .hero {
   display: flex;
-  align-items: center;       /* vertical centering */
-  justify-content: center;   /* horizontal centering */
-  padding: 50px;
-  height: 100vh;             /* full viewport height */
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;  /* reduced from 100vh */
+  padding: 40px 20px; /* adjust top/bottom spacing */
   background-image: url("https://img.freepik.com/premium-photo/abstract-digital-background_941097-269043.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   color: white;
 }
 
-/* Hero Text */
+/* Hero Text Box */
 .hero-text {
-  max-width: 600px;          /* wider for more content */
+  max-width: 800px;
   width: 90%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   padding: 30px;
-  border-radius: 10px;
-  text-align: center;        /* center text inside box */
+  border-radius: 12px;
+  text-align: center;
 }
 
+/* Projects Grid Inside Hero */
+.projects-grid-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
 
-    .hero-text h1 {
-      font-size: 30px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+/* Project Cards */
+.project-card {
+  background-color: #1f51ff;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: transform 0.3s, background-color 0.3s;
+}
 
-    .hero-text p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 15px 0 30px;
-      color: #f0f0f0;
-    }
+.project-card:hover {
+  transform: translateY(-3px);
+  background-color: #173bb3;
+}
 
-    /* Back Button */
-    .back-button {
-      display: inline-block;
-      margin-bottom: 15px;
-      padding: 10px 20px;
-      background-color: #f5a623;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+/* Back Button */
+.back-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #f5a623;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
 
-    .back-button:hover {
-      background-color: #e5941c;
-    }
+.back-button:hover {
+  background-color: #e5941c;
+}
+}
+
   </style>
 </head>
 <body>
@@ -114,7 +112,7 @@
   <!-- Navbar -->
   <header>
     <div class="logo">
-      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo" width="120">
+      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo">
     </div>
     <nav>
       <ul>
@@ -126,33 +124,32 @@
         <li><a href="aboutme.html">About Me</a></li>
       </ul>
     </nav>
-    <div class="icons">
-      🔍 👤 🛒
-    </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
-      
-      <h1>PROJECT</h1>
-      <p>The final project will consist of 4 sections. Each section has a deadline to complete. A complete description of the project can be found on the course moodle site. It will consist of launching a website built with, html, css, and javascript and hosted on github. This site is a benchmark for the Final Project. See Project Specification on Moodle Site.</p>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Projects</h1>
+    <p>Click on any project below to view its page. Each demonstrates a key concept from the course.</p>
 
+    <!-- Projects Grid Inside Hero -->
+    <div class="projects-grid-hero">
+      <a href="notegate.html" class="project-card">Project 1: NOT Gate</a>
+      <a href="andgate.html" class="project-card">Project 2: AND Gate</a>
+      <a href="andgateeasy.html" class="project-card">Project 2: AND Gate - Easy Version</a>
+      <a href="binatohexa.html" class="project-card">Project 3: Binary to Hexadecimal Converter</a>
+      <a href="asc.html" class="project-card">Project 4: ASCII Converter</a>
+      <a href="unicode-converter.html" class="project-card">Project 4: UNICODE Converter</a>
+      <a href="machine.html" class="project-card">Project 5: Machine Language Instructions Converter</a>
+    </div>
 
-    <br> Project 1: NOT Gate <br/>
-    <br> Project 2: AND Gate  <br/>
-    <br> Project 2: AND Gate -easy version <br/>
-    <br> Project 3: Binary to Hexidecimal Converter <br/>
-    <br> Project 4: ASCII Converter <br/>
-    <br> Project 4: UNICODE Converter <br/>
-    <br> Project 5: Machine Language Instructions Converter <br/>
-
-   <div>
-<br/>
-      <a href="index.html" class="back-button">← Back</a>
+    <a href="Ub-Main Page.html" class="back-button">← Back</a>
   </div>
 </section>
+
 
 </body>
 </html>
 
+
+   
