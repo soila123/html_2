@@ -12,6 +12,10 @@
       color: #333;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     /* Navbar */
     header {
       display: flex;
@@ -22,10 +26,8 @@
       border-bottom: 1px solid #ddd;
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #d87d0f;
+    .logo img {
+      width: 120px;
     }
 
     nav ul {
@@ -36,12 +38,7 @@
       padding: 0;
     }
 
-    nav ul li {
-      display: inline;
-    }
-
     nav ul li a {
-      text-decoration: none;
       color: #39ff14;
       font-weight: 500;
     }
@@ -58,51 +55,66 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 50px;
-      height: 80vh;
-      background-image: url("https://wallpaperaccess.com/full/6339485.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      text-align: center;
+      height: 100vh;
+      background-color: #333; /* fallback if image fails */
       color: white;
+      padding: 20px;
     }
 
     .hero-text {
-      max-width: 600px;
-      width: 90%;
-      background: rgba(0, 0, 0, 0.5);
+      max-width: 700px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
       padding: 30px;
       border-radius: 10px;
-      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     .hero-text h1 {
-      font-size: 30px;
-      font-weight: bold;
+      font-size: 36px;
       margin: 10px 0;
+      font-weight: bold;
     }
 
     .hero-text p {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.6;
       margin: 15px 0 30px;
       color: #f0f0f0;
     }
 
-    /* Back Button */
     .back-button {
       display: inline-block;
-      margin-bottom: 15px;
+      margin-top: 20px;
       padding: 10px 20px;
       background-color: #f5a623;
       color: white;
-      text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      transition: background-color 0.3s;
     }
 
     .back-button:hover {
       background-color: #e5941c;
+    }
+
+    .ppt-link img {
+      width: 700px;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .ppt-link img:hover {
+      transform: scale(1.05);
+    }
+
+    .ppt-link p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #f0f0f0;
     }
   </style>
 </head>
@@ -111,7 +123,7 @@
   <!-- Navbar -->
   <header>
     <div class="logo">
-      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo" width="120">
+      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo">
     </div>
     <nav>
       <ul>
@@ -123,23 +135,26 @@
         <li><a href="aboutme.html">About Me</a></li>
       </ul>
     </nav>
-    <div class="icons">
-      🔍 👤 🛒
-    </div>
+    <div class="icons">🔍 👤 🛒</div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-text">
-      
       <h1>CONCEPTS</h1>
-      <p>This .</p>
-   <div>
+      
+      <div class="ppt-link">
+        <a href="https://docs.google.com/presentation/d/1MXqIqQ9g6t4sIX9lXGMF9dANyQaSL9X6/edit?usp=sharing" target="_blank">
+  <img src="https://kryanbz.github.io/FoC/concepts.PNG" alt="Open PowerPoint">
+</a>
+
+        <p>Click the image to open the PowerPoint in Google Slides</p>
+      </div>
+
+      <!-- Back Button -->
       <a href="index.html" class="back-button">← Back</a>
-  </div>
-</section>
+    </div>
+  </section>
 
 </body>
 </html>
-
-
