@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 1: ASCII</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #daeec9;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    table {
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 6px 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #ddd;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    input[type="number"] {
+      padding: 6px;
+      margin: 10px 0;
+      width: 180px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      padding: 8px 16px;
+      background: #007acc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #005f99;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .back {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .back a {
+      color: blue;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project 1: ASCII</h1>
+
+  <div class="container">
+    <!-- ASCII Table -->
+    <table>
+      <tr>
+        <th>Decimal</th><th>Hex</th><th>Char</th>
+        <th>Decimal</th><th>Hex</th><th>Char</th>
+        <th>Decimal</th><th>Hex</th><th>Char</th>
+        <th>Decimal</th><th>Hex</th><th>Char</th>
+      </tr>
+      <tbody id="asciiTable"></tbody>
+    </table>
+
+    <!-- Input Form -->
+    <div>
+      <form onsubmit="convertToAscii(event)">
+        <label>Enter any number from 0 to 127 :</label><br>
+        <input type="number" id="asciiInput" min="0" max="127" required><br>
+        <input type="submit" value="Submit">
+        <div class="result">ASCII Value: <span id="asciiResult">-</span></div>
+      </form>
+
+      <!-- Back Button BELOW the box -->
+      <div class="back">
+        <a href="project.html">Back to Project Page</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Control characters for non-printable ASCII
+    const controlChars = [
+      "[NUL]","[SOH]","[STX]","[ETX]","[EOT]","[ENQ]","[ACK]","[BEL]",
+      "[BS]","[TAB]","[LF]","[VT]","[FF]","[CR]","[SO]","[SI]",
+      "[DLE]","[DC1]","[DC2]","[DC3]","[DC4]","[NAK]","[SYN]","[ETB]",
+      "[CAN]","[EM]","[SUB]","[ESC]","[FS]","[GS]","[RS]","[US]","[DEL]"
+    ];
+
+    // Generate ASCII Table in 4 columns (like your screenshot)
+    function generateAsciiTable() {
+      const tableBody = document.getElementById("asciiTable");
+      let html = "";
+
+      for (let row = 0; row < 32; row++) {
+        html += "<tr>";
+        for (let col = 0; col < 4; col++) {
+          const dec = row + col * 32;
+          if (dec <= 127) {
+            const hex = dec.toString(16).toUpperCase();
+            let char = (dec < 32 || dec === 127) ? controlChars[dec] : String.fromCharCode(dec);
+            html += `<td>${dec}</td><td>${hex}</td><td>${char}</td>`;
+          }
+        }
+        html += "</tr>";
+      }
+
+      tableBody.innerHTML = html;
+    }
+
+    // Convert Decimal to ASCII
+    function convertToAscii(event) {
+      event.preventDefault();
+      const num = parseInt(document.getElementById("asciiInput").value);
+      let char = "";
+
+      if (num < 32 || num === 127) {
+        char = controlChars[num];
+      } else {
+        char = String.fromCharCode(num);
+      }
+
+      document.getElementById("asciiResult").textContent = char;
+    }
+
+    // Build table on page load
+    generateAsciiTable();
+  </script>
+</body>
+</html>
