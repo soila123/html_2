@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project 1: UNICODE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    h1 {
+      margin-bottom: 5px;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+    .input-box {
+      margin: 15px 0;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+    }
+    .result {
+      margin: 10px 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    img {
+      max-width: 90%;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project 1: UNICODE</h1>
+
+  <!-- Unicode Section -->
+  <h2>Please input UNICODE number</h2>
+  <div class="input-box">
+    <input type="text" id="koreanInput" placeholder="e.g. BB79">
+    <button onclick="showUnicode('korean')">Submit</button>
+  </div>
+  <div class="result" id="koreanResult"></div>
+  <img src="img1.png" alt="Korean Unicode Table">
+
+  <!-- Extended ASCII Section -->
+  <h2>Please input UNICODE number</h2>
+  <div class="input-box">
+    <input type="text" id="asciiInput" placeholder="e.g. 0041">
+    <button onclick="showUnicode('ascii')">Submit</button>
+  </div>
+  <div class="result" id="asciiResult"></div>
+  <img src="img2.png" alt="Extended ASCII Table">
+
+  <!-- Emoji Unicode Section -->
+  <h2>Please input UNICODE number</h2>
+  <div class="input-box">
+    <input type="text" id="emojiInput" placeholder="e.g. 1F60A">
+    <button onclick="showUnicode('emoji')">Submit</button>
+  </div>
+  <div class="result" id="emojiResult"></div>
+  <img src="img3.png" alt="Emoji Unicode Table">
+
+  <!-- Back Button -->
+  <br>
+  <a href="project.html" class="back">Back to Project Page</a>
+
+  <script>
+    function showUnicode(type) {
+      let inputId = type + "Input";
+      let resultId = type + "Result";
+      let hex = document.getElementById(inputId).value.trim();
+      
+      if (!hex) {
+        document.getElementById(resultId).innerText = "Please enter a Unicode value.";
+        return;
+      }
+
+      try {
+        let code = parseInt(hex, 16);
+        let symbol = String.fromCodePoint(code);
+        document.getElementById(resultId).innerText = "Character: " + symbol;
+      } catch (e) {
+        document.getElementById(resultId).innerText = "Invalid Unicode!";
+      }
+    }
+  </script>
+</body>
+</html>
