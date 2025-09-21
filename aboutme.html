@@ -18,14 +18,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 40px;
-      background-color: #FFB4C4;
-      border-bottom: 1px solid #ddd;
+      background: linear-gradient(to right, #FFB4C4, #ffd2e2);
+      border-bottom: 2px solid #FF007F;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #d87d0f;
+    .logo img {
+      max-height: 50px;
     }
 
     nav ul {
@@ -42,8 +41,41 @@
 
     nav ul li a {
       text-decoration: none;
-      color: #b53389;
+      color: #333;
       font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover underline animation */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: #FF007F;
+      left: 50%;
+      bottom: -5px;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: #FF007F;
+    }
+
+    /* Active page highlight */
+    nav ul li a.active {
+      background: #FF007F;
+      color: #fff;
+      font-weight: bold;
     }
 
     .icons {
@@ -84,7 +116,7 @@
       border: 3px solid #fff;
       margin-bottom: 15px;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* optional soft shadow */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
 
     .hero-text h1 {
@@ -110,6 +142,7 @@
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      transition: background 0.3s ease;
     }
 
     .back-button:hover {
@@ -122,7 +155,7 @@
   <!-- Navbar -->
   <header>
     <div class="logo">
-      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo" width="120">
+      <img src="https://www.ubelearn.com/pluginfile.php/1/core_admin/logo/0x200/1737673108/UB_logo_2017%20(2).png" alt="UB Logo">
     </div>
     <nav>
       <ul>
@@ -131,7 +164,7 @@
         <li><a href="concepts.html">Concepts</a></li>
         <li><a href="database.html">Database</a></li>
         <li><a href="documentation.html">Documentation</a></li>
-        <li><a href="aboutme.html">About Me</a></li>
+        <li><a href="aboutme.html" class="active">About Me</a></li>
       </ul>
     </nav>
     <div class="icons">
@@ -143,16 +176,15 @@
   <section class="hero">
     <div class="hero-text">
       <!-- Your round profile picture -->
-      <img src="soila.png" alt="soila.png" class="profile-pic">
+      <img src="soila.png" alt="Soila Yesenia Paiz" class="profile-pic">
 
       <h1>Soila Yesenia Paiz</h1>
-      <p><p>
-  My name is Soila Yesenia Paiz. I am from Concepción Village, Corozal District.  
-  I'm currently working at the Belize Defence Force as a Clerk, where I have been serving for the past 12 years.  
-  My dream is to accomplish my Bachelor's Degree and explore new horizons in the civilian world.  
-  Due to my position, it's sometimes hard for me to practice my IT skills, but I am determined to keep learning.
-</p>
-
+      <p>
+        My name is Soila Yesenia Paiz. I am from Concepción Village, Corozal District.  
+        I'm currently working at the Belize Defence Force as a Clerk, where I have been serving for the past 14 years.  
+        My dream is to accomplish my Bachelor's Degree and explore new horizons in the civilian world.  
+        Due to my position, it's sometimes hard for me to practice my IT skills, but I am determined to keep learning.
+      </p>
 
       <a href="Ub-Main Page.html" class="back-button">← Back</a>
     </div>
@@ -160,6 +192,10 @@
 
 </body>
 </html>
+
+
+ 
+
 
 
 
