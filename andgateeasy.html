@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Project AND Logic Gate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #bffcc6;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .container {
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    svg {
+      width: 400px;
+      height: 200px;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: 1px solid #444;
+      background: #eee;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 16px;
+      background: #4a5cff;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Final Project AND Logic Gate</h1>
+  <p>This is an animation of a AND Logic Gate</p>
+
+  <div class="container">
+    <!-- AND Gate SVG -->
+    <svg viewBox="0 0 300 150">
+      <!-- Input A -->
+      <line id="inputA-line" x1="10" y1="40" x2="80" y2="40" stroke="black" stroke-width="6" />
+      <text id="inputA-text" x="0" y="35" font-size="24">0</text>
+
+      <!-- Input B -->
+      <line id="inputB-line" x1="10" y1="100" x2="80" y2="100" stroke="black" stroke-width="6" />
+      <text id="inputB-text" x="0" y="95" font-size="24">0</text>
+
+      <!-- AND Gate Shape -->
+      <path d="M80 20 H150 A50 50 0 0 1 150 120 H80 Z"
+            fill="#e9eef2" stroke="teal" stroke-width="4"/>
+      <text x="115" y="70" font-size="22" text-anchor="middle" dominant-baseline="middle">AND</text>
+
+      <!-- Output line -->
+      <line id="output-line" x1="150" y1="70" x2="250" y2="70" stroke="black" stroke-width="6"/>
+      <text id="output-text" x="260" y="75" font-size="24">0</text>
+    </svg>
+  </div>
+
+  <!-- Control Buttons -->
+  <div class="controls">
+    <button onclick="setInputs(0,0)">0 AND 0</button>
+    <button onclick="setInputs(0,1)">0 AND 1</button>
+    <button onclick="setInputs(1,0)">1 AND 0</button>
+    <button onclick="setInputs(1,1)">1 AND 1</button>
+  </div>
+
+  <!-- Back Button -->
+  <a href="javascript:history.back()" class="back-link">Back to Home</a>
+
+  <script>
+    let inputA = 0;
+    let inputB = 0;
+
+    function setInputs(a, b) {
+      inputA = a;
+      inputB = b;
+
+      // Update input labels
+      document.getElementById("inputA-text").textContent = a;
+      document.getElementById("inputB-text").textContent = b;
+
+      // Update input line colors
+      document.getElementById("inputA-line").setAttribute("stroke", a === 1 ? "gold" : "black");
+      document.getElementById("inputB-line").setAttribute("stroke", b === 1 ? "gold" : "black");
+
+      // AND gate logic
+      let output = (a === 1 && b === 1) ? 1 : 0;
+      document.getElementById("output-text").textContent = output;
+      document.getElementById("output-line").setAttribute("stroke", output === 1 ? "gold" : "black");
+    }
+  </script>
+</body>
+</html>
