@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Machine Language</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .left {
+      width: 25%;
+    }
+    .right {
+      width: 70%;
+    }
+    button {
+      display: block;
+      width: 120px;
+      margin: 10px auto;
+      padding: 15px;
+      font-size: 18px;
+      background-color: teal;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: darkcyan;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: darkred;
+      font-weight: bold;
+      text-align: center;
+    }
+    .back {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
+    }
+    .highlight {
+      background-color: #ffcccc !important;
+    }
+    .red { color: red; font-weight: bold; }
+    .green { color: green; font-weight: bold; }
+    .blue { color: blue; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <button onclick="decode('156C')">156C</button>
+    <button onclick="decode('166D')">166D</button>
+    <button onclick="decode('5056')">5056</button>
+    <button onclick="decode('306E')">306E</button>
+    <button onclick="decode('C000')">C000</button>
+    <div class="output" id="output"></div>
+    <a href="project.html" class="back">Back to Projects</a>
+  </div>
+
+  <div class="right">
+    <h2>Opcode Table</h2>
+    <table id="opcodeTable">
+      <thead>
+        <tr>
+          <th>Op-code</th>
+          <th>Operand</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="red">R</span><span class="green">XY</span></td><td>LOAD reg. <span class="red">R</span> from cell <span class="green">XY</span></td></tr>
+        <tr><td>2</td><td><span class="red">R</span><span class="green">XY</span></td><td>LOAD reg. <span class="red">R</span> with <span class="green">XY</span></td></tr>
+        <tr><td>3</td><td><span class="red">R</span><span class="green">XY</span></td><td>STORE reg. <span class="red">R</span> at <span class="green">XY</span></td></tr>
+        <tr><td>4</td><td>0<span class="red">R</span><span class="blue">S</span></td><td>MOVE <span class="red">R</span> to <span class="blue">S</span></td></tr>
+        <tr><td>5</td><td><span class="red">R</span><span class="blue">S</span><span class="blue">T</span></td><td>ADD <span class="blue">S</span> and <span class="blue">T</span> into <span class="red">R</span> (2’s comp.)</td></tr>
+        <tr><td>6</td><td><span class="red">R</span><span class="blue">S</span><span class="blue">T</span></td><td>ADD <span class="blue">S</span> and <span class="blue">T</span> into <span class="red">R</span> (floating pt.)</td></tr>
+        <tr><td>7</td><td><span class="red">R</span><span class="blue">S</span><span class="blue">T</span></td><td>OR <span class="blue">S</span> and <span class="blue">T</span> into <span class="red">R</span></td></tr>
+        <tr><td>8</td><td><span class="red">R</span><span class="blue">S</span><span class="blue">T</span></td><td>AND <span class="blue">S</span> and <span class="blue">T</span> into <span class="red">R</span></td></tr>
+        <tr><td>9</td><td><span class="red">R</span><span class="blue">S</span><span class="blue">T</span></td><td>XOR <span class="blue">S</span> and <span class="blue">T</span> into <span class="red">R</span></td></tr>
+        <tr><td>A</td><td><span class="red">R</span>0<span class="blue">X</span></td><td>ROTATE reg. <span class="red">R</span> <span class="blue">X</span> times</td></tr>
+        <tr><td>B</td><td><span class="red">R</span><span class="green">XY</span></td><td>JUMP to <span class="green">XY</span> if <span class="red">R</span> = reg. 0</td></tr>
+        <tr><td>C</td><td>000</td><td>HALT</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function decode(hex) {
+      const opcode = hex[0]; 
+      const R = hex[1];
+      const S = hex[2];
+      const T = hex[3];
+      const XY = hex.slice(2);
+
+      let result = "";
+      const table = document.getElementById("opcodeTable").getElementsByTagName("tbody")[0];
+      Array.from(table.rows).forEach(row => row.classList.remove("highlight"));
+
+      switch (opcode) {
+        case "1": result = `LOAD register ${R} from cell ${XY}`; table.rows[0].classList.add("highlight"); break;
+        case "2": result = `LOAD register ${R} with ${XY}`; table.rows[1].classList.add("highlight"); break;
+        case "3": result = `STORE register ${R} at ${XY}`; table.rows[2].classList.add("highlight"); break;
+        case "4": result = `MOVE ${R} to ${S}`; table.rows[3].classList.add("highlight"); break;
+        case "5": result = `ADD ${S} and ${T} into ${R} (2’s comp.)`; table.rows[4].classList.add("highlight"); break;
+        case "6": result = `ADD ${S} and ${T} into ${R} (floating pt.)`; table.rows[5].classList.add("highlight"); break;
+        case "7": result = `OR ${S} and ${T} into ${R}`; table.rows[6].classList.add("highlight"); break;
+        case "8": result = `AND ${S} and ${T} into ${R}`; table.rows[7].classList.add("highlight"); break;
+        case "9": result = `XOR ${S} and ${T} into ${R}`; table.rows[8].classList.add("highlight"); break;
+        case "A": result = `ROTATE register ${R} ${T} times`; table.rows[9].classList.add("highlight"); break;
+        case "B": result = `JUMP to ${XY} if register ${R} = 0`; table.rows[10].classList.add("highlight"); break;
+        case "C": result = "HALT"; table.rows[11].classList.add("highlight"); break;
+        default: result = "Unknown opcode";
+      }
+
+      document.getElementById("output").innerText = `${hex} → ${result}`;
+    }
+  </script>
+</body>
+</html>
+
+
