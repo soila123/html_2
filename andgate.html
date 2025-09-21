@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AND Gate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #85e3ff;
+    }
+
+    .container {
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #005f99;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 16px;
+      background: #4a5cff;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      background: #333;
+    }
+
+    svg {
+      width: 300px;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project: AND Gate</h1>
+
+  <div class="container">
+    <!-- Input Controls -->
+    <div>
+      <label>Input A:</label>
+      <button onclick="setInput('A',1)">ON</button>
+      <button onclick="setInput('A',0)">OFF</button>
+
+      <label>Input B:</label>
+      <button onclick="setInput('B',1)">ON</button>
+      <button onclick="setInput('B',0)">OFF</button>
+    </div>
+
+    <!-- Run Button -->
+    <button onclick="runAND()">Run</button>
+
+    <!-- AND Gate Diagram -->
+    <div>
+      <svg viewBox="0 0 300 150">
+        <!-- Input A -->
+        <line id="inputA-line" x1="10" y1="40" x2="80" y2="40" stroke="black" stroke-width="6" />
+        <text id="inputA-text" x="0" y="35" font-size="20">0</text>
+
+        <!-- Input B -->
+        <line id="inputB-line" x1="10" y1="100" x2="80" y2="100" stroke="black" stroke-width="6" />
+        <text id="inputB-text" x="0" y="95" font-size="20">0</text>
+
+        <!-- AND Gate Shape -->
+        <path d="M80 20 H150 A50 50 0 0 1 150 120 H80 Z"
+              fill="#e9eef2" stroke="teal" stroke-width="4"/>
+        <text x="115" y="75" font-size="18" text-anchor="middle" dominant-baseline="middle">AND</text>
+
+
+        <!-- Output line -->
+        <line id="output-line" x1="150" y1="70" x2="250" y2="70" stroke="black" stroke-width="6"/>
+        <text id="output-text" x="260" y="75" font-size="20">0</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <a href="javascript:history.back()" class="back-link">⬅ Back</a>
+
+  <script>
+    let inputA = 0;
+    let inputB = 0;
+
+    function setInput(which, value) {
+      if (which === 'A') {
+        inputA = value;
+        document.getElementById("inputA-text").textContent = value;
+        document.getElementById("inputA-line").setAttribute("stroke", value === 1 ? "gold" : "black");
+      } else {
+        inputB = value;
+        document.getElementById("inputB-text").textContent = value;
+        document.getElementById("inputB-line").setAttribute("stroke", value === 1 ? "gold" : "black");
+      }
+    }
+
+    function runAND() {
+      let output = (inputA === 1 && inputB === 1) ? 1 : 0;
+      document.getElementById("output-text").textContent = output;
+      document.getElementById("output-line").setAttribute("stroke", output === 1 ? "gold" : "black");
+    }
+  </script>
+</body>
+</html>
