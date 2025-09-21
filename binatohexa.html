@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 1: Binary to Hexadecimal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff5ba;
+      text-align: center;
+      margin: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 300px;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background: #ddd;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="text"] {
+      padding: 6px;
+      margin: 10px 0;
+      width: 150px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      padding: 8px 16px;
+      background: #007acc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #005f99;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Project 1: Binary to Hexadecimal</h1>
+
+  <div class="container">
+    <!-- Table -->
+    <table>
+      <tr><th>Decimal</th><th>Hexadecimal</th><th>Binary</th></tr>
+      <tr><td>0</td><td>0</td><td>0000</td></tr>
+      <tr><td>1</td><td>1</td><td>0001</td></tr>
+      <tr><td>2</td><td>2</td><td>0010</td></tr>
+      <tr><td>3</td><td>3</td><td>0011</td></tr>
+      <tr><td>4</td><td>4</td><td>0100</td></tr>
+      <tr><td>5</td><td>5</td><td>0101</td></tr>
+      <tr><td>6</td><td>6</td><td>0110</td></tr>
+      <tr><td>7</td><td>7</td><td>0111</td></tr>
+      <tr><td>8</td><td>8</td><td>1000</td></tr>
+      <tr><td>9</td><td>9</td><td>1001</td></tr>
+      <tr><td>10</td><td>A</td><td>1010</td></tr>
+      <tr><td>11</td><td>B</td><td>1011</td></tr>
+      <tr><td>12</td><td>C</td><td>1100</td></tr>
+      <tr><td>13</td><td>D</td><td>1101</td></tr>
+      <tr><td>14</td><td>E</td><td>1110</td></tr>
+      <tr><td>15</td><td>F</td><td>1111</td></tr>
+    </table>
+
+    <!-- Input Form -->
+    <form onsubmit="convertBinary(event)">
+      <label>Enter any 4-digit binary number:</label><br>
+      <input type="text" id="binaryInput" maxlength="4" placeholder="e.g. 1010" required><br>
+      <input type="submit" value="Submit">
+      <div class="result">Hexadecimal Value: <span id="hexResult">-</span></div>
+    </form>
+  </div>
+
+  <script>
+    function convertBinary(event) {
+      event.preventDefault();
+
+      const binary = document.getElementById("binaryInput").value.trim();
+
+      // Check if input is valid (only 0 or 1, 4 digits)
+      if (!/^[01]{4}$/.test(binary)) {
+        alert("Please enter a valid 4-digit binary number.");
+        return;
+      }
+
+      // Convert binary → decimal → hex
+      const decimal = parseInt(binary, 2);
+      const hex = decimal.toString(16).toUpperCase();
+
+      document.getElementById("hexResult").textContent = hex;
+    }
+  </script>
+</body>
+</html>
