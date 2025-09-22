@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Project 1: UNICODE</title>
+  <title>Project 1: Unicode</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -40,10 +40,10 @@
   </style>
 </head>
 <body>
-  <h1>Project 1: UNICODE</h1>
+  <h1>Project 1: Unicode</h1>
 
   <!-- Unicode Section -->
-  <h2>Please input UNICODE number</h2>
+  <h2>Enter a Unicode (Korean Example)</h2>
   <div class="input-box">
     <input type="text" id="koreanInput" placeholder="e.g. BB79">
     <button onclick="showUnicode('korean')">Submit</button>
@@ -52,7 +52,7 @@
   <img src="img1.png" alt="Korean Unicode Table">
 
   <!-- Extended ASCII Section -->
-  <h2>Please input UNICODE number</h2>
+  <h2>Enter a Unicode (ASCII Example)</h2>
   <div class="input-box">
     <input type="text" id="asciiInput" placeholder="e.g. 0041">
     <button onclick="showUnicode('ascii')">Submit</button>
@@ -61,7 +61,7 @@
   <img src="img2.png" alt="Extended ASCII Table">
 
   <!-- Emoji Unicode Section -->
-  <h2>Please input UNICODE number</h2>
+  <h2>Enter a Unicode (Emoji Example)</h2>
   <div class="input-box">
     <input type="text" id="emojiInput" placeholder="e.g. 1F60A">
     <button onclick="showUnicode('emoji')">Submit</button>
@@ -74,19 +74,21 @@
   <a href="project.html" class="back">Back to Project Page</a>
 
   <script>
+    console.log("JavaScript loaded successfully ✅");
+
     function showUnicode(type) {
-      let inputId = type + "Input";
-      let resultId = type + "Result";
-      let hex = document.getElementById(inputId).value.trim();
-      
+      const inputId = type + "Input";
+      const resultId = type + "Result";
+      const hex = document.getElementById(inputId).value.trim();
+
       if (!hex) {
         document.getElementById(resultId).innerText = "Please enter a Unicode value.";
         return;
       }
 
       try {
-        let code = parseInt(hex, 16);
-        let symbol = String.fromCodePoint(code);
+        const code = parseInt(hex, 16);
+        const symbol = String.fromCodePoint(code);
         document.getElementById(resultId).innerText = "Character: " + symbol;
       } catch (e) {
         document.getElementById(resultId).innerText = "Invalid Unicode!";
@@ -95,5 +97,4 @@
   </script>
 </body>
 </html>
-
 
