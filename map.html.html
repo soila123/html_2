@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belize Map Game</title>
+  <style>
+    body {
+      font-family: Comic Sans MS, sans-serif;
+      text-align: center;
+      background: url('ele.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+    }
+
+    h1 {
+      color: #004080;
+      text-shadow: 2px 2px #ffffff;
+    }
+
+    .buttons {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #0AAB63;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      margin: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #007acc;
+    }
+
+    .map-container {
+      position: relative;
+      display: inline-block;
+      width: 350px;
+      height: auto;
+    }
+
+    .district {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .district.active {
+      opacity: 1;
+    }
+
+    #district-name {
+      font-size: 30px;
+      font-weight: bold;
+      color: #0AAB63;
+      text-shadow: 2px 2px #fff;
+      margin-top: 15px;
+    }
+
+    /* Music toggle button at bottom-right */
+    #music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007acc;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    #music-toggle:hover {
+      transform: scale(1.1);
+      background-color: #0AAB63;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Belize Interactive Map Game</h1>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop muted>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="buttons">
+    <button onclick="showDistrict('belize')">Belize</button>
+    <button onclick="showDistrict('cayo')">Cayo</button>
+    <button onclick="showDistrict('corozal')">Corozal</button>
+    <button onclick="showDistrict('orange')">Orange Walk</button>
+    <button onclick="showDistrict('stann')">Stann Creek</button>
+    <button onclick="showDistrict('toledo')">Toledo</button>
+  </div>
+
+  <div class="map-container">
+    <img src="map.png" alt="Belize Map" id="base-map" width="100%">
+    <img src="belize.png" alt="Belize District" id="belize" class="district">
+    <img src="cayo.png" alt="Cayo District" id="cayo" class="district">
+    <img src="corozal.png" alt="Corozal District" id="corozal" class="district">
+    <img src="orange.png" alt="Orange Walk District" id="orange" class="district">
+    <img src="stann.png" alt="Stann Creek District" id="stann" class="district">
+    <img src="toledo.png" alt="Toledo District" id="toledo" class="district">
+  </div>
+
+  <div id="district-name"></div>
+
+  <!-- Music toggle button -->
+  <button id="music-toggle" onclick="toggleMusic()">🔊 Music On</button>
+
+  <script>
+    const audio = document.getElementById('background-music');
+    const toggleBtn = document.getElementById('music-toggle');
+
+    // Attempt to autoplay music muted, then unmute
+    window.addEventListener('load', () => {
+      audio.play().catch(err => console.log("Autoplay prevented:", err));
+      setTimeout(() => {
+        audio.muted = false;
+      }, 500);
+    });
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.textContent = '🔊 Music On';
+      } else {
+        audio.pause();
+        toggleBtn.textContent = '🔇 Music Off';
+      }
+    }
+
+    function showDistrict(id) {
+      const districts = document.querySelectorAll('.district');
+      districts.forEach(d => d.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      
+      const nameMap = {
+        belize: 'Belize District',
+        cayo: 'Cayo District',
+        corozal: 'Corozal District',
+        orange: 'Orange Walk District',
+        stann: 'Stann Creek',
+        toledo: 'Toledo District'
+      };
+      document.getElementById('district-name').innerText = nameMap[id];
+    }
+  </script>
+
+</body>
+</html>

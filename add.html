@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Soila's Program</title>
+</head>
+<body>
+
+<h1>Programs</h1>
+<p>This is an exercise in writing my C++ programs in JavaScript. Why?</p>
+
+<!-- Add Two Numbers -->
+<h2>Add Two Numbers</h2>
+<input type="number" id="num1" placeholder="Enter first number">
+<input type="number" id="num2" placeholder="Enter second number">
+<button onclick="calculateSum()">Calculate Sum</button>
+<p>Result: <span id="result"></span></p>
+
+<!-- Multiply Two Numbers -->
+<h2>Multiply Two Numbers</h2>
+<input type="number" id="product1" placeholder="Enter first number">
+<input type="number" id="product2" placeholder="Enter second number">
+<button onclick="calculateProduct()">Calculate Product</button>
+<p>Result: <span id="presult"></span></p>
+
+<!-- Divide Two Numbers -->
+<h2>Divide Two Numbers</h2>
+<input type="number" id="divide1" placeholder="Enter numerator">
+<input type="number" id="divide2" placeholder="Enter denominator">
+<button onclick="calculateDivision()">Calculate Division</button>
+<p>Result: <span id="dresult"></span></p>
+
+<script>
+function calculateSum() {
+    let num1 = parseFloat(document.getElementById('num1').value);
+    let num2 = parseFloat(document.getElementById('num2').value);
+    let sum = num1 + num2;
+    document.getElementById('result').textContent = sum;
+}
+
+function calculateProduct() {
+    let num1 = parseFloat(document.getElementById('product1').value);
+    let num2 = parseFloat(document.getElementById('product2').value);
+    let product = num1 * num2;
+    document.getElementById('presult').textContent = product;
+}
+
+function calculateDivision() {
+    let num1 = parseFloat(document.getElementById('divide1').value);
+    let num2 = parseFloat(document.getElementById('divide2').value);
+
+    if (num2 === 0) {
+        document.getElementById('dresult').textContent = "Cannot divide by zero!";
+    } else {
+        let quotient = num1 / num2;
+        document.getElementById('dresult').textContent = quotient;
+    }
+}
+</script>
+
+</body>
+</html>
