@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -34,10 +35,6 @@
       padding: 0;
     }
 
-    nav ul li {
-      display: inline;
-    }
-
     nav ul li a {
       text-decoration: none;
       padding: 8px 15px;
@@ -66,52 +63,53 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       padding: 50px;
-      height: 80vh;
+      height: auto;
       background-image: url("https://image.freepik.com/free-photo/rose-flower-seamless-pattern-pink-roses-with-green-leaves-floral-background_118689-1133.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      color: white;
+      color: #333;
     }
 
     .hero-text {
-      max-width: 600px;
+      max-width: 800px;
       width: 90%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.8);
       padding: 30px;
       text-align: center;
       border-radius: 10px;
-    }
-
-    /* Profile Picture */
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      margin-bottom: 15px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .hero-text h1 {
       font-size: 30px;
       font-weight: bold;
       margin: 10px 0;
+      color: #FF007F;
     }
 
     .hero-text p {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.6;
       margin: 15px 0 30px;
-      color: #f0f0f0;
+      color: #333;
     }
 
-    /* Back Button */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #FF007F;
+      margin-bottom: 15px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
     .back-button {
       display: inline-block;
-      margin-bottom: 15px;
+      margin-top: 20px;
       padding: 10px 20px;
       background-color: #FF007F;
       color: white;
@@ -124,49 +122,11 @@
       background-color: #e5941c;
     }
 
-    /* Music Button */
-    .music-button {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      width: 50px;
-      height: 50px;
-      background-color: #FF007F;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .music-button:hover {
-      background-color: #e5941c;
-      transform: scale(1.1);
-    }
-
-    .music-button svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
-
-    /* Pulse animation when playing */
-    .playing {
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 10px #FF007F, 0 0 20px #FF007F;
-      }
-      50% {
-        box-shadow: 0 0 20px #FF007F, 0 0 40px #FF007F;
-      }
-      100% {
-        box-shadow: 0 0 10px #FF007F, 0 0 20px #FF007F;
-      }
+    iframe {
+      border: 2px solid #FF007F;
+      border-radius: 10px;
+      width: 100%;
+      height: 600px;
     }
   </style>
 </head>
@@ -187,68 +147,26 @@
         <li><a href="aboutme.html">About Me</a></li>
       </ul>
     </nav>
-    <div class="icons">
-      🔍 👤 🛒
-    </div>
+    <div class="icons">🔍 👤 🛒</div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-text">
-      <!-- Profile picture -->
       <img src="soila.png" alt="Soila Profile" class="profile-pic">
 
-      <h1>Soila Yesenia Paiz</h1>
-      <p>My name is Soila Yesenia Paiz. I am from Concepción village, Corozal District.
-      I'm currently working at the Belize Defence Force as a Clerk. I have been in the Force for the past 14 years. My dream is to accomplish my Bachelor's Degree and explore new horizons at the civilian world. Due to my position, it's hard for me to practice my IT Skills.</p>
+      <!-- Embedded PDF Resume -->
+      <iframe 
+        src="resume.pdf" 
+        width="100%" 
+        height="600px" 
+        style="border: 2px solid #FF007F; border-radius: 10px;">
+      </iframe>
 
-      <a href="index.html" class="Home Page">← Back</a>
+      <a href="course.html" class="back-button">← Back</a>
     </div>
   </section>
 
-  <!-- Hidden Music -->
-  <audio id="bg-music" loop>
-    <source src="faded.mp3" type="audio/mpeg">
-    
-  </audio>
-
-  <!-- Music Button -->
-  <div class="music-button" id="music-btn" onclick="toggleMusic()">
-    <!-- Music note icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-      <path d="M369.8 1.5c8.9 4.2 14.2 13.2 14.2 22.9v360c0 44.2-35.8 80-80 80s-80-35.8-80-80
-      35.8-80 80-80c12.4 0 24.1 2.9 34.5 8.1V173.2L160 219.1V424c0 44.2-35.8 80-80
-      80s-80-35.8-80-80 35.8-80 80-80c12.4 0 24.1 2.9 34.5 8.1V24c0-10.6
-      7.5-19.8 17.9-22.3l240-56c5.3-1.2 10.9-.4 15.4 2.3z"/>
-    </svg>
-  </div>
-
-  <script>
-    const music = document.getElementById("bg-music");
-    const musicBtn = document.getElementById("music-btn");
-    let isPlaying = false;
-
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        musicBtn.classList.remove("playing");
-      } else {
-        music.play();
-        musicBtn.classList.add("playing");
-      }
-      isPlaying = !isPlaying;
-    }
-  </script>
-
 </body>
 </html>
-
-
-
- 
-
-
-
-
-
 
